@@ -7,24 +7,26 @@ import java.util.List;
 public class Offer extends PanacheMongoEntity {
     public String description;
     public List<String> keywords;
-    public int salary;
+    public float salary;
     public String type;
     public String status;
     public Boolean openToRecruiters;
-    public List<String> declinedCandidates;
+    public List<String> acceptedCandidateIds;
+    public List<String> declinedCandidateIds;
     public String createdAt;
     public String SIREN;
 
     public Offer() {}
 
-    public Offer(String description, List<String> keywords, int salary, String type, String status, Boolean openToRecruiters, List<String> declinedCandidates, String createdAt, String SIREN) {
+    public Offer(String description, List<String> keywords, float salary, String type, String status, Boolean openToRecruiters, List<String> acceptedCandidateIds, List<String> declinedCandidateIds, String createdAt, String SIREN) {
         this.description = description;
         this.keywords = keywords;
         this.salary = salary;
         this.type = type;
         this.status = status;
         this.openToRecruiters = openToRecruiters;
-        this.declinedCandidates = declinedCandidates;
+        this.acceptedCandidateIds = acceptedCandidateIds;
+        this.declinedCandidateIds = declinedCandidateIds;
         this.createdAt = createdAt;
         this.SIREN = SIREN;
     }
