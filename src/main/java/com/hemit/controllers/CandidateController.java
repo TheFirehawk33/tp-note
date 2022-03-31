@@ -5,11 +5,14 @@ import com.hemit.repositories.CandidateRepository;
 import org.bson.types.ObjectId;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/candidates")
+@Produces("application/json")
+@Consumes("application/json")
 public class CandidateController {
 
     private final CandidateRepository candidateRepository;
@@ -20,7 +23,7 @@ public class CandidateController {
     }
 
     @POST
-    public Response create(Candidate candidate) {
+    public Response create(@Valid Candidate candidate) {
         candidateRepository.persist(candidate);
         return Response.status(Response.Status.CREATED).build();
     }

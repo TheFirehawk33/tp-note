@@ -2,18 +2,29 @@ package com.hemit.models;
 
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
+
 public class Candidate extends PanacheMongoEntity {
+    @NotEmpty
     public String firstName;
+    @NotEmpty
     public String lastName;
     public String birthDate;
+    @Email
     public String email;
     public String profilePictureURL;
+    @NotEmpty
     public String description;
-    public float minimumSalary;
+    @NotNull
+    public Float minimumSalary;
     public List<String> offerIds;
+    @NotEmpty
     public List<String> offerTypes;
+    @NotNull
     public List<String> keywords;
     public String lastLoggedIn;
 
