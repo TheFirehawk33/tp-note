@@ -1,9 +1,11 @@
-package java.com.hemit.utils;
+package com.hemit.utils;
 
 import com.hemit.models.Offer;
+import io.restassured.response.ExtractableResponse;
+import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
-import java.com.hemit.models.CreateResponse;
+import com.hemit.models.CreateResponse;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,13 +23,15 @@ public class OfferUtils {
                 .contentType("application/json")
                 .body(offer)
                 .when()
-                .post("/tournaments")
+                .post("/offers")
                 .then();
 
         int statusCode = response.extract().statusCode();
-        CreateResponse content = null;
+        CreateResponse content = new CreateResponse();
         if (statusCode == 201) {
-            content = response.extract().as(CreateResponse.class);
+            Offer responsedata1 = response.extract().as(Offer.class);
+
+            content.id= String.valueOf(responsedata1.id);
         }
 
         return new StatusAndContent<>(statusCode, content);

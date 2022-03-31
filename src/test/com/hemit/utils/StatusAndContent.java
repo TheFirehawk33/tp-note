@@ -1,4 +1,4 @@
-package java.com.hemit.utils;
+package com.hemit.utils;
 
 public class StatusAndContent<T> {
     public int statusCode;

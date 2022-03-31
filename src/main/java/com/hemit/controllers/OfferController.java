@@ -5,10 +5,13 @@ import com.hemit.repositories.OfferRepository;
 import org.bson.types.ObjectId;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+@Produces("application/json")
+@Consumes("application/json")
 @Path("/offers")
 public class OfferController {
 
@@ -20,14 +23,15 @@ public class OfferController {
     }
 
     @POST
-    public Response create(Offer offer) {
+    public Response create(@Valid Offer offer) {
         offerRepository.persist(offer);
-        return Response.status(Response.Status.CREATED).build();
+        Response returnData = Response.status(Response.Status.CREATED).build();
+        return Response.ok(offer).status(Response.Status.CREATED).build();
     }
 
     @PUT
     @Path("/{id}")
-    public void update(@PathParam("id") String id, Offer offer) {
+    public void update(@PathParam("id") String id,@Valid Offer offer) {
         offer.id = new ObjectId(id);
         offerRepository.update(offer);
     }
