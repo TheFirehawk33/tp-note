@@ -1,6 +1,6 @@
 package com.hemit.controllers;
 
-import com.hemit.model.Offer;
+import com.hemit.models.Offer;
 import com.hemit.repositories.OfferRepository;
 import org.bson.types.ObjectId;
 

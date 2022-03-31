@@ -1,6 +1,6 @@
 package com.hemit.controllers;
 
-import com.hemit.model.Company;
+import com.hemit.models.Company;
 import com.hemit.repositories.CompanyRepository;
 import org.bson.types.ObjectId;
 

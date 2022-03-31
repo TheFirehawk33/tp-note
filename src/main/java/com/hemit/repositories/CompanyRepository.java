@@ -1,6 +1,6 @@
 package com.hemit.repositories;
 
-import com.hemit.model.Company;
+import com.hemit.models.Company;
 import io.quarkus.mongodb.panache.PanacheMongoRepository;
 
 import javax.enterprise.context.ApplicationScoped;

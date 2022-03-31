@@ -1,8 +1,7 @@
-package com.hemit.model;
+package com.hemit.models;
 
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class Company extends PanacheMongoEntity {

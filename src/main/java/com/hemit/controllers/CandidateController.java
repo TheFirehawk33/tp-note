@@ -1,6 +1,6 @@
 package com.hemit.controllers;
 
-import com.hemit.model.Candidate;
+import com.hemit.models.Candidate;
 import com.hemit.repositories.CandidateRepository;
 import org.bson.types.ObjectId;
 

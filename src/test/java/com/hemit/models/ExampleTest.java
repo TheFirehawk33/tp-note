@@ -1,4 +1,4 @@
-package com.hemit;
+package com.hemit.models;
 
 public class ExampleTest {
 }

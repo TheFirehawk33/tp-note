@@ -1,4 +1,4 @@
-package com.hemit.model;
+package com.hemit.models;
 
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 
