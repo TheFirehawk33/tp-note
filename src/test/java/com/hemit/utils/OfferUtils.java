@@ -11,9 +11,12 @@ import static io.restassured.RestAssured.given;
 
 public class OfferUtils {
 
-    public static StatusAndContent<CreateResponse> createOffer(String description) {
+    public static Offer OfferBuilder(String description) {
         List<String> list = Arrays.asList("oui", "non");
-        Offer offer = new Offer(description, list, 12f,"feu","paralisé",true,list,list,"aujourd'hui","ariel");
+        return new Offer(description, list, 12f,"feu","paralisé",true,list,list,"aujourd'hui","ariel");
+    }
+
+    public static StatusAndContent<CreateResponse> createOffer(Offer offer) {
         ValidatableResponse response = given()
                 .contentType("application/json")
                 .body(offer)
