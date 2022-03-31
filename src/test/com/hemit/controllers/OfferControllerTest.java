@@ -37,5 +37,10 @@ public class OfferControllerTest {
         assertThat(response.statusCode,is(400));
     }
 
+    @Test
+    public void update_should_return_status_200() {
+        StatusAndContent<CreateResponse> response = OfferUtils.createOffer(OfferUtils.OfferBuilder("oui"));
 
+
+    }
 }

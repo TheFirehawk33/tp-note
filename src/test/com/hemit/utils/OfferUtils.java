@@ -37,4 +37,23 @@ public class OfferUtils {
         return new StatusAndContent<>(statusCode, content);
     }
 
+    public static StatusAndContent<CreateResponse> updateOffer(String id,Offer offer) {
+        ValidatableResponse response = given()
+                .contentType("application/json")
+                .body(offer)
+                .when()
+                .post("/offers")
+                .then();
+
+        int statusCode = response.extract().statusCode();
+        CreateResponse content = new CreateResponse();
+        if (statusCode == 201) {
+            Offer responsedata1 = response.extract().as(Offer.class);
+
+            content.id= String.valueOf(responsedata1.id);
+        }
+
+        return new StatusAndContent<>(statusCode, content);
+    }
+
 }
