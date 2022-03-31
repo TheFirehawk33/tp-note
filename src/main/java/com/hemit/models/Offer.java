@@ -30,4 +30,5 @@ public class Offer extends PanacheMongoEntity {
         this.createdAt = createdAt;
         this.SIREN = SIREN;
     }
+
 }
