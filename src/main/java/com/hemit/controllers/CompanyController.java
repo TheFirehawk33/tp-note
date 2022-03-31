@@ -5,11 +5,14 @@ import com.hemit.repositories.CompanyRepository;
 import org.bson.types.ObjectId;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/companies")
+@Consumes("application/json")
+@Produces("application/json")
 public class CompanyController {
 
     private final CompanyRepository companyRepository;
@@ -20,14 +23,14 @@ public class CompanyController {
     }
 
     @POST
-    public Response create(Company company) {
+    public Response create(@Valid Company company) {
         companyRepository.persist(company);
-        return Response.status(Response.Status.CREATED).build();
+        return Response.ok(company).status(Response.Status.CREATED).build();
     }
 
     @PUT
     @Path("/{id}")
-    public void update(@PathParam("id") String id, Company company) {
+    public void update(@PathParam("id") String id, @Valid Company company) {
         company.id = new ObjectId(id);
         companyRepository.update(company);
     }
