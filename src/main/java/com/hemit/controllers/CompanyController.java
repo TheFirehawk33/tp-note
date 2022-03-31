@@ -30,22 +30,30 @@ public class CompanyController {
 
     @PUT
     @Path("/{id}")
-    public void update(@PathParam("id") String id, @Valid Company company) {
+    public Response update(@PathParam("id") String id, @Valid Company company) {
         company.id = new ObjectId(id);
         companyRepository.update(company);
+        return Response.ok(company).status(Response.Status.OK).build();
     }
 
     @DELETE
     @Path("/{id}")
-    public void delete(@PathParam("id") String id) {
+    public Response delete(@PathParam("id") String id) {
         Company company = companyRepository.findById(new ObjectId(id));
         companyRepository.delete(company);
+        return Response.ok(company).status(Response.Status.OK).build();
     }
 
     @GET
     @Path("/{id}")
     public Company get(@PathParam("id") String id) {
         return companyRepository.findById(new ObjectId(id));
+    }
+
+    @GET
+    @Path("/last")
+    public Company getLast() {
+        return companyRepository.findAll().firstResult();
     }
 
     @GET
