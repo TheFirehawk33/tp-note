@@ -2,18 +2,18 @@ package com.hemit.model;
 
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Company extends PanacheMongoEntity {
     public String name;
     public String SIREN;
     public String description;
     public String logo;
-    public Date createdAt;
+    public String createdAt;
 
     public Company(){}
 
-    public Company(String name, String SIREN, String description, String logo, Date createdAt) {
+    public Company(String name, String SIREN, String description, String logo, String createdAt) {
         this.name = name;
         this.SIREN = SIREN;
         this.description = description;
