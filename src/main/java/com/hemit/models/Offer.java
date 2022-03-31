@@ -11,13 +11,13 @@ public class Offer extends PanacheMongoEntity {
     public String description;
     @NotNull
     public List<String> keywords;
-    @NotEmpty
+    @NotNull
     public float salary;
     @NotEmpty
     public String type;
     @NotEmpty
     public String status;
-    @NotEmpty
+    @NotNull
     public Boolean openToRecruiters;
 
     public List<String> acceptedCandidateIds;
@@ -25,7 +25,7 @@ public class Offer extends PanacheMongoEntity {
     @NotEmpty
     public String createdAt;
     @NotEmpty
-    public String SIREN;
+    public String siren;
 
     public Offer() {}
 
@@ -39,7 +39,7 @@ public class Offer extends PanacheMongoEntity {
         this.acceptedCandidateIds = acceptedCandidateIds;
         this.declinedCandidateIds = declinedCandidateIds;
         this.createdAt = createdAt;
-        this.SIREN = SIREN;
+        this.siren = SIREN;
     }
 
 }

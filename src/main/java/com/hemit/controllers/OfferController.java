@@ -25,7 +25,6 @@ public class OfferController {
     @POST
     public Response create(@Valid Offer offer) {
         offerRepository.persist(offer);
-        Response returnData = Response.status(Response.Status.CREATED).build();
         return Response.ok(offer).status(Response.Status.CREATED).build();
     }
 

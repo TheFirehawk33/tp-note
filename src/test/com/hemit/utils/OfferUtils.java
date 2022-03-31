@@ -27,12 +27,14 @@ public class OfferUtils {
                 .then();
 
         int statusCode = response.extract().statusCode();
+        String data = response.toString();
         CreateResponse content = new CreateResponse();
         if (statusCode == 201) {
             Offer responsedata1 = response.extract().as(Offer.class);
 
             content.id= String.valueOf(responsedata1.id);
         }
+
 
         return new StatusAndContent<>(statusCode, content);
     }
@@ -44,15 +46,40 @@ public class OfferUtils {
                 .when()
                 .post("/offers")
                 .then();
-
         int statusCode = response.extract().statusCode();
         CreateResponse content = new CreateResponse();
         if (statusCode == 201) {
             Offer responsedata1 = response.extract().as(Offer.class);
-
             content.id= String.valueOf(responsedata1.id);
         }
+        return new StatusAndContent<>(statusCode, content);
+    }
 
+    public static StatusAndContent<CreateResponse> DeleteOffer(String id) {
+        ValidatableResponse response = given()
+                .contentType("application/json")
+                .when()
+                .delete("/offers/"+id)
+                .then();
+        int statusCode = response.extract().statusCode();
+        CreateResponse content = new CreateResponse();
+
+        return new StatusAndContent<>(statusCode, content);
+    }
+
+    public static StatusAndContent<CreateResponse> GetOffer(String id) {
+        ValidatableResponse response = given()
+                .contentType("application/json")
+                .when()
+                .get("/offers/"+id)
+                .then();
+        int statusCode = response.extract().statusCode();
+        CreateResponse content = new CreateResponse();
+
+        if (statusCode == 200) {
+            Offer responsedata1 = response.extract().as(Offer.class);
+            content.id= String.valueOf(responsedata1.id);
+        }
         return new StatusAndContent<>(statusCode, content);
     }
 

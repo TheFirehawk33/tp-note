@@ -40,7 +40,21 @@ public class OfferControllerTest {
     @Test
     public void update_should_return_status_200() {
         StatusAndContent<CreateResponse> response = OfferUtils.createOffer(OfferUtils.OfferBuilder("oui"));
+    }
 
+    @Test
+    public void delete_should_return_status_204(){
+        StatusAndContent<CreateResponse> response = OfferUtils.createOffer(OfferUtils.OfferBuilder("testdelete"));
+        assertThat(response.statusCode, is(201));
+        StatusAndContent<CreateResponse> response1 = OfferUtils.DeleteOffer(response.content.id);
+        assertThat(response1.statusCode, is(204));
+    }
 
+    @Test
+    public void get_should_return_status_204(){
+        StatusAndContent<CreateResponse> response = OfferUtils.createOffer(OfferUtils.OfferBuilder("testGet"));
+        assertThat(response.statusCode, is(201));
+        StatusAndContent<CreateResponse> response1 = OfferUtils.GetOffer(response.content.id);
+        assertThat(response1.statusCode, is(200));
     }
 }
