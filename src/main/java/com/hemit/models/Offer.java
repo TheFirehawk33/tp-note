@@ -2,19 +2,30 @@ package com.hemit.models;
 
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class Offer extends PanacheMongoEntity {
+    @NotEmpty
     public String description;
+    @NotNull
     public List<String> keywords;
+    @NotNull
     public float salary;
+    @NotEmpty
     public String type;
+    @NotEmpty
     public String status;
+    @NotNull
     public Boolean openToRecruiters;
+
     public List<String> acceptedCandidateIds;
     public List<String> declinedCandidateIds;
+    @NotEmpty
     public String createdAt;
-    public String SIREN;
+    @NotEmpty
+    public String siren;
 
     public Offer() {}
 
@@ -28,6 +39,7 @@ public class Offer extends PanacheMongoEntity {
         this.acceptedCandidateIds = acceptedCandidateIds;
         this.declinedCandidateIds = declinedCandidateIds;
         this.createdAt = createdAt;
-        this.SIREN = SIREN;
+        this.siren = SIREN;
     }
+
 }
