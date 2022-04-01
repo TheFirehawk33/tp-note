@@ -44,9 +44,16 @@ public class CompanyControllerTest {
 
     @Test
     public void delete_shouldReturn_200() {
-        StatusAndContent<Company> response = CompanyUtils.deleteCompany(String.valueOf(CompanyUtils.getLastCompany().content.id));
+        StatusAndContent<CreateResponse> response = CompanyUtils.deleteCompany(String.valueOf(CompanyUtils.getLastCompany().content.id));
 
         assertThat(response.statusCode, is(200));
+    }
+
+    @Test
+    public void delete_shouldReturn_400_when_unknownId() {
+        StatusAndContent<CreateResponse> response = CompanyUtils.deleteCompany(String.valueOf(new ObjectId()));
+
+        assertThat(response.statusCode, is(400));
     }
 
     @Test
@@ -54,5 +61,12 @@ public class CompanyControllerTest {
         StatusAndContent<CreateResponse> response = CompanyUtils.updateCompany(CompanyUtils.CompanyBuilder("name2"), String.valueOf(CompanyUtils.getLastCompany().content.id));
 
         assertThat(response.statusCode, is(200));
+    }
+
+    @Test
+    public void update_shouldReturn_400_when_unknownId() {
+        StatusAndContent<CreateResponse> response = CompanyUtils.updateCompany(CompanyUtils.CompanyBuilder("name2"), String.valueOf(new ObjectId()));
+
+        assertThat(response.statusCode, is(400));
     }
 }

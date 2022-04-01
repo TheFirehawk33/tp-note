@@ -31,17 +31,24 @@ public class CompanyController {
     @PUT
     @Path("/{id}")
     public Response update(@PathParam("id") String id, @Valid Company company) {
-        company.id = new ObjectId(id);
-        companyRepository.update(company);
-        return Response.ok(company).status(Response.Status.OK).build();
+        Company company2 = companyRepository.findById(new ObjectId(id));
+        if(company2 != null) {
+            company.id = new ObjectId(id);
+            company2.update(company);
+            return Response.ok(company).status(Response.Status.OK).build();
+        }
+        return Response.noContent().status(Response.Status.BAD_REQUEST).build();
     }
 
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam("id") String id) {
         Company company = companyRepository.findById(new ObjectId(id));
-        companyRepository.delete(company);
-        return Response.ok(company).status(Response.Status.OK).build();
+        if(company != null) {
+            companyRepository.delete(company);
+            return Response.ok(company).status(Response.Status.OK).build();
+        }
+        return Response.noContent().status(Response.Status.BAD_REQUEST).build();
     }
 
     @GET

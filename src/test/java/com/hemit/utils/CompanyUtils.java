@@ -44,7 +44,7 @@ public class CompanyUtils {
 
         int statusCode = response.extract().statusCode();
         CreateResponse content = new CreateResponse();
-        if (statusCode == 201) {
+        if (statusCode == 200) {
             Company company1 = response.extract().as(Company.class);
             content.id = String.valueOf(company1.id);
         }
@@ -76,15 +76,16 @@ public class CompanyUtils {
         return new StatusAndContent<Company>(statusCode, content);
     }
 
-    public static StatusAndContent<Company> deleteCompany(String id) {
+    public static StatusAndContent<CreateResponse> deleteCompany(String id) {
         ValidatableResponse response = when().delete("/companies/"+id).then();
 
         int statusCode = response.extract().statusCode();
-        Company content = null;
+        CreateResponse content = new CreateResponse();
         if (statusCode == 200) {
-            content = response.extract().as(Company.class);
+            Company company1 = response.extract().as(Company.class);
+            content.id = String.valueOf(company1.id);
         }
 
-        return new StatusAndContent<Company>(statusCode, content);
+        return new StatusAndContent(statusCode, content);
     }
 }
