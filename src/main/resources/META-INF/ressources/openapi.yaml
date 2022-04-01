@@ -1,0 +1,446 @@
+swagger: "2.0"
+info:
+  description: "Swagger documentation pour le tp"
+  version: "1.0.0"
+  title: "Swagger tp"
+  contact:
+    email: "apiteam@swagger.io"
+host: "tp.swagger.io"
+basePath: "/v2"
+tags:
+  - name: "offer"
+    description: "accès aux offres"
+  - name: "company"
+    description: "exploitation des compagnies"
+  - name: "candidate"
+    description: "Accès des candidats"
+
+
+schemes:
+  - "https"
+  - "http"
+paths:
+  /offers:
+    post:
+      tags:
+        - "offer"
+      summary: "Ajout d'une nouvelle offre"
+      description: ""
+      operationId: "addOffer"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "offre à ajouter dans la base"
+          required: true
+          schema:
+            $ref: "#/definitions/Offer"
+      responses:
+        "405":
+          description: "Invalid input"
+        default:
+          description: "successful operation"
+    put:
+      tags:
+        - "offer"
+      summary: "Ajout d'une nouvelle offre"
+      description: ""
+      operationId: "updateOffer"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "offre à ajouter dans la base"
+          required: true
+          schema:
+            $ref: "#/definitions/Offer"
+      responses:
+        "400":
+          description: "Invalid ID"
+        "404":
+          description: "Offer not found"
+        "405":
+          description: "Validation exception"
+        default:
+          description: "successful operation"
+    get:
+      tags:
+        - "offer"
+      summary: "Récupérer toutes les offres"
+      description: ""
+      operationId: "getAllOffers"
+      produces:
+
+        - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Offer"
+  /offers/{id}:
+    get:
+      tags:
+        - "offer"
+      summary: "Récupération d'une offre par son id"
+      description: ""
+      operationId: "getOfferById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID of offer to return"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Offer"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "offer not found"
+    delete:
+      tags:
+        - "offer"
+      summary: "Deletes an offer"
+      description: ""
+      operationId: "deleteOffer"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "offer id to delete"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "offer not found"
+  /companies:
+    post:
+      tags:
+        - "company"
+      summary: "Ajout d'une nouvelle company"
+      description: ""
+      operationId: "addCompany"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "company à ajouter dans la base"
+          required: true
+          schema:
+            $ref: "#/definitions/company"
+      responses:
+        "405":
+          description: "Invalid input"
+        default:
+          description: "successful operation"
+    put:
+      tags:
+        - "company"
+      summary: "Ajout d'une nouvelle offre"
+      description: ""
+      operationId: "updateCompany"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "company à mettre à jour"
+          required: true
+          schema:
+            $ref: "#/definitions/company"
+      responses:
+        "400":
+          description: "Invalid ID"
+        "404":
+          description: "company not found"
+        "405":
+          description: "Validation exception"
+        default:
+          description: "successful operation"
+    get:
+      tags:
+        - "company"
+      summary: "Récupérer toutes les company"
+      description: ""
+      operationId: "getAllCompany"
+      produces:
+
+        - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/company"
+  /companies/{id}:
+    get:
+      tags:
+        - "company"
+      summary: "Récupération d'une company par son id"
+      description: ""
+      operationId: "getCompanyById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID of offer to return"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/company"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "company not found"
+    delete:
+      tags:
+        - "company"
+      summary: "Deletes a company"
+      description: ""
+      operationId: "deleteCompany"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "company id to delete"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "company not found"
+  /candidate:
+    post:
+      tags:
+        - "candidate"
+      summary: "Ajout d'une nouvelle candidate"
+      description: ""
+      operationId: "addCandidate"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "candidate à ajouter dans la base"
+          required: true
+          schema:
+            $ref: "#/definitions/candidate"
+      responses:
+        "405":
+          description: "Invalid input"
+        default:
+          description: "successful operation"
+    put:
+      tags:
+        - "candidate"
+      summary: "Ajout d'une nouvelle offre"
+      description: ""
+      operationId: "updateCandidate"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "candidate à mettre à jour"
+          required: true
+          schema:
+            $ref: "#/definitions/candidate"
+      responses:
+        "400":
+          description: "Invalid ID"
+        "404":
+          description: "candidate not found"
+        "405":
+          description: "Validation exception"
+        default:
+          description: "successful operation"
+    get:
+      tags:
+        - "candidate"
+      summary: "Récupérer toutes les candidate"
+      description: ""
+      operationId: "getAllCandidate"
+      produces:
+
+        - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/candidate"
+  /candidate/{id}:
+    get:
+      tags:
+        - "candidate"
+      summary: "Récupération d'une candidate par son id"
+      description: ""
+      operationId: "getCandidateById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID of offer to return"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/candidate"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "candidate not found"
+    delete:
+      tags:
+        - "candidate"
+      summary: "Deletes a candidate"
+      description: ""
+      operationId: "deleteCandidate"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "candidate id to delete"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "candidate not found"
+
+
+
+definitions:
+  Offer:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      keywords:
+        type: "string"
+      salary:
+        type: "number"
+      type:
+        type: "string"
+      status:
+        type: "string"
+      openToRecruiters:
+        type: "boolean"
+      acceptedCandidateIds:
+        type: "array"
+        items:
+          type: string
+      declinedCandidateIds:
+        type: "array"
+        items:
+          type: string
+      createdAt:
+        type: "string"
+      siren:
+        type: "string"
+  company:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      siren:
+        type: "string"
+      description:
+        type: "string"
+      logoUrl:
+        type: "string"
+      createdAt:
+        type: "string"
+      location:
+        type: "array"
+        items:
+          type: number
+  candidate:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      firstname:
+        type: "string"
+      lastname:
+        type: "string"
+      birthdate:
+        type: "string"
+      email:
+        type: "string"
+      profilePictureUrl:
+        type: "string"
+      description:
+        type: "string"
+      minimunSalary:
+        type: number
+      offerIds:
+        type: "array"
+        items:
+          type: "string"
+      offerTypes:
+        type: "array"
+        items:
+          type: "string"
+      keywords:
+        type: "array"
+        items:
+          type: "string"
+      lastLoggedIn:
+        type: "string"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+

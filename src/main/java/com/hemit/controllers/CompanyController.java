@@ -3,12 +3,13 @@ package com.hemit.controllers;
 import com.hemit.models.Company;
 import com.hemit.repositories.CompanyRepository;
 import org.bson.types.ObjectId;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
-
+@Tag(name="company", description="Gestion des company")
 @Path("/companies")
 public class CompanyController {
 

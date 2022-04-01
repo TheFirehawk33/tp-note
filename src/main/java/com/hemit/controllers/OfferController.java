@@ -2,12 +2,20 @@ package com.hemit.controllers;
 
 import com.hemit.models.Offer;
 import com.hemit.repositories.OfferRepository;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.vertx.core.cli.annotations.Summary;
 import org.bson.types.ObjectId;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponseSchema;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
+
+@Tag(name="offer", description="Gestion des offer")
 
 @Path("/offers")
 public class OfferController {
@@ -18,6 +26,7 @@ public class OfferController {
     public OfferController(OfferRepository offerRepository) {
         this.offerRepository = offerRepository;
     }
+
 
     @POST
     public Response create(Offer offer) {
