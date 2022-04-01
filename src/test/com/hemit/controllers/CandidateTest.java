@@ -2,6 +2,7 @@ package com.hemit.controllers;
 
 import com.hemit.models.Candidate;
 import com.hemit.repositories.CandidateRepository;
+import com.hemit.utils.OfferTypeEnum;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.ValidatableResponse;
@@ -45,7 +46,7 @@ public class CandidateTest {
                         "description",
                         10.2f,
                         List.of("offerId1"),
-                        List.of("CDI,CDD"),
+                        List.of(OfferTypeEnum.CDD,OfferTypeEnum.CDI),
                         List.of("#java")
                 ),
                 Arguments.of(
@@ -59,7 +60,7 @@ public class CandidateTest {
                         "description",
                         10.2f,
                         null,
-                        List.of("CDI,CDD"),
+                        List.of(OfferTypeEnum.CDD,OfferTypeEnum.CDI),
                         List.of("#java")
                 ),
                 Arguments.of(
@@ -73,7 +74,7 @@ public class CandidateTest {
                         "description",
                         0f,
                         null,
-                        List.of("CDI,CDD"),
+                        List.of(OfferTypeEnum.CDD,OfferTypeEnum.CDI),
                         List.of("#java")
                 )
         );
@@ -83,10 +84,10 @@ public class CandidateTest {
     @MethodSource("creationTestParameter")
     void creationTest(String nameTest, int expectedCode, String firstName, String lastName,
                       String birth, String email, String profilePictureUrl, String description,
-                      Float minimumSalary, List<String> offerIds, List<String> offerTypes, List<String> keywords)
+                      Float minimumSalary, List<String> offerIds, List<OfferTypeEnum> offerTypes, List<String> keywords)
     {
         //Given
-        Candidate candidate = new Candidate(firstName,lastName,birth,email,profilePictureUrl,description,minimumSalary,offerIds,offerTypes,keywords,null);
+        Candidate candidate = new Candidate(firstName,lastName,birth,email,profilePictureUrl,description,minimumSalary,offerIds, offerTypes,keywords,null);
 
         //Then
         ValidatableResponse response = given()
