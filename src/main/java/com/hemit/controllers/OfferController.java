@@ -50,7 +50,7 @@ public class OfferController {
 
     @GET
     public List<Offer> list() {
-        return offerRepository.listAll();
+        return offerRepository.listOffers(9);
     }
 
     @GET

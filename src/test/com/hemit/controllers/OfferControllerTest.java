@@ -57,4 +57,9 @@ public class OfferControllerTest {
         StatusAndContent<CreateResponse> response1 = OfferUtils.GetOffer(response.content.id);
         assertThat(response1.statusCode, is(200));
     }
+
+    @Test
+    public void list_should_return_status_200() {
+
+    }
 }
