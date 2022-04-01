@@ -42,4 +42,53 @@ public class Offer extends PanacheMongoEntity {
         this.siren = SIREN;
     }
 
+    public Offer setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public Offer setKeywords(List<String> keywords) {
+        this.keywords = keywords;
+        return this;
+    }
+
+    public Offer setSalary(float salary) {
+        this.salary = salary;
+        return this;
+    }
+
+    public Offer setType(String type) {
+        this.type = type;
+        return this;
+    }
+
+    public Offer setStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    public Offer setOpenToRecruiters(Boolean openToRecruiters) {
+        this.openToRecruiters = openToRecruiters;
+        return this;
+    }
+
+    public Offer setAcceptedCandidateIds(List<String> acceptedCandidateIds) {
+        this.acceptedCandidateIds = acceptedCandidateIds;
+        return this;
+    }
+
+    public Offer setDeclinedCandidateIds(List<String> declinedCandidateIds) {
+        this.declinedCandidateIds = declinedCandidateIds;
+        return this;
+    }
+
+    public Offer setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    public Offer setSiren(String siren) {
+        this.siren = siren;
+        return this;
+    }
 }

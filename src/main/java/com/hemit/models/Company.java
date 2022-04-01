@@ -34,4 +34,34 @@ public class Company extends PanacheMongoEntity {
         this.createdAt = createdAt;
         this.location = location;
     }
+
+    public Company setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Company setSiren(String siren) {
+        this.siren = siren;
+        return this;
+    }
+
+    public Company setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public Company setLogoURL(String logoURL) {
+        this.logoURL = logoURL;
+        return this;
+    }
+
+    public Company setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    public Company setLocation(List<Double> location) {
+        this.location = location;
+        return this;
+    }
 }

@@ -12,10 +12,6 @@ import static io.restassured.RestAssured.when;
 
 public class CompanyUtils {
 
-    public static Company CompanyBuilder(String name) {
-        return new Company(name, "983323000", "description", "logoURL.jpg", "1648732973", new ArrayList<Double>());
-    }
-
     public static StatusAndContent<CreateResponse> createCompany(Company company) {
         ValidatableResponse response = given()
                 .contentType("application/json")

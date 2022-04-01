@@ -1,5 +1,6 @@
 package com.hemit.controllers;
 
+import com.hemit.builder.CompanyBuilder;
 import com.hemit.models.Company;
 import com.hemit.models.CreateResponse;
 import com.hemit.utils.CompanyUtils;
@@ -16,7 +17,7 @@ public class CompanyControllerTest {
 
     @Test
     public void create_shouldReturn_201_when_goodRequest() {
-        StatusAndContent<CreateResponse> response = CompanyUtils.createCompany(CompanyUtils.CompanyBuilder("name2"));
+        StatusAndContent<CreateResponse> response = CompanyUtils.createCompany(CompanyBuilder.buildWithName("name2"));
 
         assertThat(response.statusCode, is(201));
     }
@@ -58,14 +59,14 @@ public class CompanyControllerTest {
 
     @Test
     public void update_shouldReturn_200() {
-        StatusAndContent<CreateResponse> response = CompanyUtils.updateCompany(CompanyUtils.CompanyBuilder("name2"), String.valueOf(CompanyUtils.getLastCompany().content.id));
+        StatusAndContent<CreateResponse> response = CompanyUtils.updateCompany(CompanyBuilder.buildWithName("name2"), String.valueOf(CompanyUtils.getLastCompany().content.id));
 
         assertThat(response.statusCode, is(200));
     }
 
     @Test
     public void update_shouldReturn_400_when_unknownId() {
-        StatusAndContent<CreateResponse> response = CompanyUtils.updateCompany(CompanyUtils.CompanyBuilder("name2"), String.valueOf(new ObjectId()));
+        StatusAndContent<CreateResponse> response = CompanyUtils.updateCompany(CompanyBuilder.buildWithName("name2"), String.valueOf(new ObjectId()));
 
         assertThat(response.statusCode, is(400));
     }

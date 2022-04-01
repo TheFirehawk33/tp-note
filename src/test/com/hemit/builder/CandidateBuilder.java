@@ -16,7 +16,9 @@ public class CandidateBuilder {
 
     public static Candidate buildGeneric()
     {
-        return buildEmpty()
+        Candidate candidate = buildEmpty();
+        candidate.id = new ObjectId();
+        return candidate
                 .setBirthDate("12/12/12")
                 .setDescription("description")
                 .setEmail("mail@ok.com")
@@ -26,7 +28,7 @@ public class CandidateBuilder {
                 .setMinimumSalary(15f)
                 .setLastLoggedIn("1111")
                 .setOfferIds(Collections.emptyList())
-                .setOfferTypes(List .of(OfferTypeEnum.CDD))
+                .setOfferTypes(List.of(OfferTypeEnum.CDD))
                 .setProfilePictureURL("url.pp/img.jpg");
     }
 
