@@ -11,12 +11,15 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponseSchema;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Tag(name="offer", description="Gestion des offer")
 
+@Produces("application/json")
+@Consumes("application/json")
 @Path("/offers")
 public class OfferController {
 
@@ -27,16 +30,15 @@ public class OfferController {
         this.offerRepository = offerRepository;
     }
 
-
     @POST
-    public Response create(Offer offer) {
+    public Response create(@Valid Offer offer) {
         offerRepository.persist(offer);
-        return Response.status(Response.Status.CREATED).build();
+        return Response.ok(offer).status(Response.Status.CREATED).build();
     }
 
     @PUT
     @Path("/{id}")
-    public void update(@PathParam("id") String id, Offer offer) {
+    public void update(@PathParam("id") String id,@Valid Offer offer) {
         offer.id = new ObjectId(id);
         offerRepository.update(offer);
     }

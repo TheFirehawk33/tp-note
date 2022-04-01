@@ -10,12 +10,15 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.springframework.context.annotation.Description;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 @Tag(name="candidats", description="Gestion des candidats")
 
 @Path("/candidates")
+@Produces("application/json")
+@Consumes("application/json")
 public class CandidateController {
 
     private final CandidateRepository candidateRepository;
@@ -28,7 +31,7 @@ public class CandidateController {
 
     @Description("Création d'une offre")
     @POST
-    public Response create(Candidate candidate) {
+    public Response create(@Valid Candidate candidate) {
         candidateRepository.persist(candidate);
         return Response.status(Response.Status.CREATED).build();
     }
